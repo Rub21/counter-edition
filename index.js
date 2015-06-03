@@ -5,29 +5,8 @@ var osmium = require('osmium');
 var fs = require('fs');
 var _ = require('underscore');
 var argv = require('optimist').argv;
-var timestamp = 1429920000; //04/25/2015
-var users = [
-	[510836, 'Rub21'],
-	[1240849, 'ediyes'],
-	[1829683, 'Luis36995'],
-	[2219338, 'RichRico'],
-	[2226712, 'dannykath'],
-	[94578, 'andygol'],
-	[1051550, 'shravan91'],
-	[2554698, 'ruthmaben'],
-	[2377377, 'abel801'],
-	[2511706, 'calfarome'],
-	[2512300, 'samely'],
-	[2115749, 'srividya_c'],
-	[1306, 'PlaneMad'],
-	[2748195, 'karitotp'],
-	[2644101, 'Chetan_Gowda'],
-	[2823295, 'ramyaragupathy'],
-	[589596, 'lxbarth'],
-	[2306749, 'shvrm'],
-	[53073, 'Aaron Lidman'],
-	[146675, 'geohacker']
-];
+var users = require('./users.js').users;
+var timestamp = argv.timestamp; //04/25/2015 1429920000
 
 var obj = function() {
 	return {
@@ -42,8 +21,8 @@ var obj = function() {
 var count = {};
 
 for (var i = 0; i < users.length; i++) {
-	count[users[i][0]] = new obj();
-	count[users[i][0]].user = users[i][1];
+	count[users[i]] = new obj();
+	count[users[i]].user = users[i];
 }
 
 var file = new osmium.File(argv.file);
@@ -52,27 +31,27 @@ var handler = new osmium.Handler();
 
 handler.on('way', function(way) {
 	if (way.timestamp >= timestamp) {
-		if (count.hasOwnProperty(way.uid)) {
-			++count[way.uid].osm_way;
-			count[way.uid].changeset.push(way.changeset);
+		if (count.hasOwnProperty(way.user)) {
+			++count[way.user].osm_way;
+			count[way.user].changeset.push(way.changeset);
 		}
 	}
 });
 
 handler.on('node', function(node) {
 	if (node.timestamp >= timestamp) {
-		if (count.hasOwnProperty(node.uid)) {
-			++count[node.uid].osm_node;
-			count[node.uid].changeset.push(node.changeset);
+		if (count.hasOwnProperty(node.user)) {
+			++count[node.user].osm_node;
+			count[node.user].changeset.push(node.changeset);
 		}
 	}
 });
 
 handler.on('relation', function(relation) {
 	if (relation.timestamp >= timestamp) {
-		if (count.hasOwnProperty(relation.uid)) {
-			++count[relation.uid].osm_relation;
-			count[relation.uid].changeset.push(relation.changeset);
+		if (count.hasOwnProperty(relation.user)) {
+			++count[relation.user].osm_relation;
+			count[relation.user].changeset.push(relation.changeset);
 		}
 	}
 });

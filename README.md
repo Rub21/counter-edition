@@ -29,7 +29,11 @@ $ node index.js --file=nepal-latest.osm.pbf
 
 ```
 
-The result is: https://github.com/Rub21/counter-edition/blob/master/nepal-latest-count.md
+*The result is:*
 
-If you want change the user just edit the file:
+ https://github.com/Rub21/counter-edition/blob/master/nepal-latest-count.md
+
+*If you want change the user just edit the file:*
+
+https://github.com/Rub21/counter-edition/blob/master/users.js
 

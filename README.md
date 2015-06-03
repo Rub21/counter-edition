@@ -15,7 +15,7 @@ Example:
 
 http://download.geofabrik.de/asia/nepal-latest.osm.pbf
 
-or any other OSM data file and save on `counter-edition`
+or any other OSM data file and save in `counter-edition`
 
 
 - Get timestamp from http://www.unixtimestamp.com/index.php

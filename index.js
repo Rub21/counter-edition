@@ -6,7 +6,7 @@ var fs = require('fs');
 var _ = require('underscore');
 var argv = require('optimist').argv;
 var users = require('./users.js').users;
-var timestamp = argv.timestamp; //04/25/2015 1429920000
+var timestamp = argv.timestamp;
 
 var obj = function() {
 	return {

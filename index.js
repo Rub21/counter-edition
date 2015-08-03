@@ -39,7 +39,7 @@ handler.on('way', function(way) {
 });
 
 handler.on('node', function(node) {
-	if (node.timestamp >= timestamp && node.version === 1 && way.tags().highway != 'undefined') {
+	if (node.timestamp >= timestamp && node.version === 1 && node.tags().highway != 'undefined') {
 		if (count.hasOwnProperty(node.user)) {
 			++count[node.user].osm_node;
 			count[node.user].changeset.push(node.changeset);
@@ -48,7 +48,7 @@ handler.on('node', function(node) {
 });
 
 handler.on('relation', function(relation) {
-	if (relation.timestamp >= timestamp && relation.version === 1 && way.tags().highway != 'undefined') {
+	if (relation.timestamp >= timestamp && relation.version === 1 && relation.tags().highway != 'undefined') {
 		if (count.hasOwnProperty(relation.user)) {
 			++count[relation.user].osm_relation;
 			count[relation.user].changeset.push(relation.changeset);

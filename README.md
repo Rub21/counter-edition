@@ -25,7 +25,7 @@ Example :
 ![image](https://cloud.githubusercontent.com/assets/1152236/7965571/ff75cff0-09e3-11e5-98ad-4eab014004de.png)
 
 ```
-$ node index.js --file=nepal-latest.osm.pbf --timestamp=1429920000
+$ node index.js --file=nepal-latest.osm.pbf --timestamp=1420070400
 
 ```
 

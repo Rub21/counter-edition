@@ -30,7 +30,8 @@ var reader = new osmium.Reader(file);
 var handler = new osmium.Handler();
 
 handler.on('way', function(way) {
-	if (way.timestamp >= timestamp && way.version === 1) {
+	console.log(way.tags())
+	if (way.timestamp >= timestamp && way.version === 1 && way.tags().highway != 'undefined') {
 		if (count.hasOwnProperty(way.user)) {
 			++count[way.user].osm_way;
 			count[way.user].changeset.push(way.changeset);
@@ -39,7 +40,7 @@ handler.on('way', function(way) {
 });
 
 handler.on('node', function(node) {
-	if (node.timestamp >= timestamp && node.version === 1) {
+	if (node.timestamp >= timestamp && node.version === 1 && way.tags().highway != 'undefined') {
 		if (count.hasOwnProperty(node.user)) {
 			++count[node.user].osm_node;
 			count[node.user].changeset.push(node.changeset);
@@ -48,7 +49,7 @@ handler.on('node', function(node) {
 });
 
 handler.on('relation', function(relation) {
-	if (relation.timestamp >= timestamp && relation.version === 1) {
+	if (relation.timestamp >= timestamp && relation.version === 1 && way.tags().highway != 'undefined') {
 		if (count.hasOwnProperty(relation.user)) {
 			++count[relation.user].osm_relation;
 			count[relation.user].changeset.push(relation.changeset);

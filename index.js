@@ -30,7 +30,6 @@ var reader = new osmium.Reader(file);
 var handler = new osmium.Handler();
 
 handler.on('way', function(way) {
-	console.log(way.tags())
 	if (way.timestamp >= timestamp && way.version === 1 && way.tags().highway != 'undefined') {
 		if (count.hasOwnProperty(way.user)) {
 			++count[way.user].osm_way;

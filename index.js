@@ -83,7 +83,6 @@ reader.apply(handler);
 count = _.sortBy(count, function(v, k) {
 	return -(v.osm_nodev1 + v.osm_nodevx + v.osm_wayv1 + v.osm_wayvx + v.osm_relationv1 + v.osm_relationvx);
 });
-
 var output = argv.file.split('.')[0] + '-count.md';
 fs.writeFile(output, "User | Num OSM Objects | Num Changeset | Num nodes V1 | Num nodes Vx | Num ways V1| Num ways Vx | Num relation V1 | Num relation Vx \n ---|---|---|---|---|---|---|---|--- \n", function(err) {});
 var total = new obj();
@@ -99,13 +98,11 @@ _.each(count, function(v, k) {
 		' | ' + addCommas(_.size(_.uniq(v.changeset))) +
 		' | ' + addCommas(v.osm_nodev1) + ' | ' + addCommas(v.osm_nodevx) + ' | ' + addCommas(v.osm_wayv1) + ' | ' + addCommas(v.osm_wayvx) +
 		' | ' + addCommas(v.osm_relationv1) + ' | ' + addCommas(v.osm_relationvx) + '\n';
-
 	fs.appendFile(output, text, function(err) {});
 });
 var text = '**Total** | ' + addCommas(total.osm_nodev1 + total.osm_nodevx + total.osm_wayv1 + total.osm_wayvx + total.osm_relationv1 + total.osm_relationvx) +
 	' | ' + addCommas(_.size(_.uniq(total.changeset))) + ' | ' + addCommas(total.osm_nodev1) + ' | ' + addCommas(total.osm_nodevx) +
 	' | ' + addCommas(total.osm_wayv1) + ' | ' + addCommas(total.osm_wayvx) + ' | ' + addCommas(total.osm_relationv1) + ' | ' + addCommas(total.osm_relationvx) + '\n';
-
 fs.appendFile(output, text, function(err) {});
 
 function addCommas(intNum) {
